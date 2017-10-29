@@ -7,6 +7,7 @@ public class Driver {
         Student a = new Student.Builder().age(10).name("A").studentNumber(1).build();
         Student b = new Student.Builder().age(20).name("B").studentNumber(2).build();
         Student c = new Student.Builder().age(30).name("C").studentNumber(3).build();
+        Student d = new Student.Builder().age(40).name("D").studentNumber(4).build();
 
         SinglyLinkedList list = new SinglyLinkedList();
         list.addAtHead(a);
@@ -18,8 +19,12 @@ public class Driver {
         list.addSorted(c);
         System.out.println(" Print Third  results ");
         list.print();
-        list.addSorted(b);
+        list.addSorted(d);
         System.out.println(" Print Fourth  results ");
+        list.print();
+
+        list.InsertNth(d,3);
+        System.out.println(" Print Fifth  results ");
         list.print();
 
     }

@@ -15,57 +15,56 @@ public class SinglyLinkedList {
 
         public Node(Student data) {
             this.data = data;
-            this.nextLink =null;
+            this.nextLink = null;
         }
     }
 
     private Node head; // sometimes called top
     private int size;
 
-    public int size(){
+    public int size() {
         return size;
     }
 
-    public boolean isEmpty(){
-        return size==0;
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     // Node Insertion in a Linked List
     // 1. Insert	element	at	the	start
 
-    public void addAtHead(Student data){
-        head = new Node(data,head);
+    public void addAtHead(Student data) {
+        head = new Node(data, head);
         size++;
     }
 
     // 2. Insert	element	at	the	end
-    public void addToTail(Student data){
-        Node newNode = new Node(data,null);
+    public void addToTail(Student data) {
+        Node newNode = new Node(data, null);
         Node curr = head;
 
-        if(head==null)
-            head=newNode;
+        if (head == null)
+            head = newNode;
 
-        while (curr.nextLink!=null){
-            curr=curr.nextLink;
+        while (curr.nextLink != null) {
+            curr = curr.nextLink;
         }
-        curr.nextLink=newNode;
+        curr.nextLink = newNode;
 
     }
     // 3. Insert	of	an	element	at	the	Nth position
 
-    Node InsertNth(Node head, Student data, int position) {
+    Node InsertNth(Student data, int position) {
         Node node = head;
-        if (position == 0){
-            node = new Node(data,head);
+        if (position == 0) {
+            node = new Node(data, head);
             return node;
-        }
-        else {
-            while(--position > 0){
+        } else {
+            while (--position > 0) {
                 node = node.nextLink;
             }
             Node i = node.nextLink;
-            node.nextLink =  new Node(data,i);
+            node.nextLink = new Node(data, i);
             return head;
         }
     }
@@ -73,31 +72,30 @@ public class SinglyLinkedList {
 
     // 3. Insert	element	in	sorted	order
 
-    public void addSorted(Student data){
+    public void addSorted(Student data) {
         Node newNode = new Node(data, null);
         Node curr = head;
 
-        if(curr.nextLink==null || curr.data.getStudentNumber() > data.getStudentNumber()){
-            newNode.nextLink =head;
+        if (curr.nextLink == null || curr.data.getStudentNumber() > data.getStudentNumber()) {
+            newNode.nextLink = head;
             return;
         }
 
-        while (curr.nextLink!=null && curr.nextLink.data.getStudentNumber() < data.getStudentNumber()){
+        while (curr.nextLink != null && curr.nextLink.data.getStudentNumber() < data.getStudentNumber()) {
             curr = curr.nextLink;
         }
 
-        newNode.nextLink=curr.nextLink;
-        curr.nextLink=newNode;
+        newNode.nextLink = curr.nextLink;
+        curr.nextLink = newNode;
     }
-
 
     // TRAVERSE A LINKED LIST
 
-    public void print(){
+    public void print() {
         Node temp = head;
-        while (temp!=null){
-            System.out.println(temp.data.getName()+", "+temp.data.getStudentNumber()+", ");
-            temp=temp.nextLink;
+        while (temp != null) {
+            System.out.println(temp.data.getName() + ", " + temp.data.getStudentNumber() + ", ");
+            temp = temp.nextLink;
         }
     }
 
