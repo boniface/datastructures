@@ -5,23 +5,19 @@ public class Student {
     private int studentNumber;
     private  String name;
     private int age;
-    private Student next;
-    private Student previous;
+
 
     public Student(Builder builder) {
         studentNumber=builder.studentNumber;
         name=builder.name;
         age=builder.age;
-        next=builder.next;
-        previous=builder.previous;
+
     }
 
     public static class Builder{
         private int studentNumber;
         private  String name;
         private int age;
-        private Student next;
-        private Student previous;
 
         public Builder name(String value){
             this.name=value;
@@ -33,15 +29,6 @@ public class Student {
             return this;
         }
 
-        public Builder next(Student value){
-            this.next=value;
-            return this;
-        }
-
-        public Builder previous(Student value){
-            this.previous=value;
-            return this;
-        }
 
         public Builder studentNumber(int value){
             this.studentNumber=value;
@@ -54,12 +41,16 @@ public class Student {
 
     }
 
+    public int getStudentNumber() {
+        return studentNumber;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getAge() {
+        return age;
     }
 
     @Override
