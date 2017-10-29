@@ -77,14 +77,17 @@ public class SinglyLinkedList {
         Node newNode = new Node(data, null);
         Node curr = head;
 
-        if(curr.nextLink==null || curr.data.getStudentNumber()> data.getStudentNumber()){
+        if(curr.nextLink==null || curr.data.getStudentNumber() > data.getStudentNumber()){
             newNode.nextLink =head;
             return;
         }
 
-        while (curr.nextLink!=null && curr.nextLink.data.getStudentNumber()< data.getStudentNumber()){
+        while (curr.nextLink!=null && curr.nextLink.data.getStudentNumber() < data.getStudentNumber()){
             curr = curr.nextLink;
         }
+
+        newNode.nextLink=curr.nextLink;
+        curr.nextLink=newNode;
     }
 
 
@@ -93,10 +96,10 @@ public class SinglyLinkedList {
     public void print(){
         Node temp = head;
         while (temp!=null){
-            System.out.println(temp.data.getName()+" ");
+            System.out.println(temp.data.getName()+", "+temp.data.getStudentNumber()+", ");
             temp=temp.nextLink;
         }
     }
-    
+
 
 }
