@@ -40,7 +40,7 @@ public class SinglyLinkedList {
 
     // 2. Insert	element	at	the	end
     public void addToTail(Student data) {
-        Node newNode = new Node(data, null);
+        Node newNode = new Node(data);
         Node curr = head;
 
         if (head == null)
@@ -63,8 +63,8 @@ public class SinglyLinkedList {
             while (--position > 0) {
                 node = node.nextLink;
             }
-            Node i = node.nextLink;
-            node.nextLink = new Node(data, i);
+            Node next = node.nextLink;
+            node.nextLink = new Node(data, next);
             return head;
         }
     }
@@ -73,7 +73,7 @@ public class SinglyLinkedList {
     // 3. Insert	element	in	sorted	order
 
     public void addSorted(Student data) {
-        Node newNode = new Node(data, null);
+        Node newNode = new Node(data);
         Node curr = head;
 
         if (curr.nextLink == null || curr.data.getStudentNumber() > data.getStudentNumber()) {
