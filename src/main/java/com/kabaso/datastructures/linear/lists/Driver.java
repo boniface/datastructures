@@ -3,7 +3,7 @@ package com.kabaso.datastructures.linear.lists;
 import com.kabaso.datastructures.Student;
 
 public class Driver {
-    
+
     public static void main(String[] args) {
         Student a = new Student.Builder().age(10).name("A").studentNumber(1).build();
         Student b = new Student.Builder().age(20).name("B").studentNumber(2).build();
