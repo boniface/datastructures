@@ -1,7 +1,7 @@
 
 ### TASKS FOR DATA STRUCTURE ELECTIVES
 
-1. Create a an Class e.g Student, Car, Train, Hotel, School etc
+1. Create a  Class e.g Student, Car, Train, Hotel, School etc
 
 2. Use the Class to create a LinkedList
 
