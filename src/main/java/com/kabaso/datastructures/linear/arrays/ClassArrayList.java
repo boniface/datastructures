@@ -9,9 +9,6 @@ import java.util.Set;
 
 public class ClassArrayList {
 
-
-
-
     public static void main(String[] args) {
         Book b1 = new Book();
         b1.setIsdn(1);
@@ -29,24 +26,32 @@ public class ClassArrayList {
         b4.setIsdn(3);
         b4.setTitle("Java 6");
 
-        List bagAllowingDuplicates = new ArrayList();
-        bagAllowingDuplicates.add(b1);
-        bagAllowingDuplicates.add(b2);
-        bagAllowingDuplicates.add(b3);
-        bagAllowingDuplicates.add(b4);
+        // initialise and Add
+        Book books[] = new Book[4];
+        books[0] = b1;
+        books[1] = b2;
+        books[2] = b3;
+        books[3] = b4;
 
-        System.out.println("The Items ina List is "+bagAllowingDuplicates.size());
+        // Print The Results
+        for (Book book : books) {
+            System.out.println(" The Book is " + book.getTitle());
+        }
 
+        // Multi-Dimension
 
-        Set nodupsbag = new HashSet();
-        nodupsbag.add(b1);
-        nodupsbag.add(b2);
-        nodupsbag.add(b3);
-        nodupsbag.add(b4);
-
-        System.out.println("The Items ina Set is  "+nodupsbag.size());
+        Book multibooks[][][][] = new Book[4][2][2][1];
+        multibooks[0][0][0][0] = b1;
+        for (Book[][][] multibook : multibooks) {
+            for (Book[][] books1 : multibook) {
+                for (Book[] books2 : books1) {
+                    for (Book book : books2) {
+                        if (book != null)
+                            System.out.println(" The Book is title is " + book.getTitle());
+                    }
+                }
+            }
+        }
 
     }
-
-
 }
