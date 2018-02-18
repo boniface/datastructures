@@ -67,17 +67,61 @@ public class CircularLinkedList {
             tail = temp;
         }
         size++;
-
     }
 
+    public Student removeHead() throws IllegalStateException{
+        if(isEmpty())
+            throw new IllegalStateException(" List Empty");
+        Student data = tail.nextLink.data;
+        if(tail==tail.nextLink)
+            tail = null;
+        else
+            tail.nextLink=tail.nextLink.nextLink;
+        size --;
+        return data;
+    }
 
+    public void deleteList(){
+        tail = null;
+        size = 0;
+    }
 
+    public boolean removeNode(Student data){
+        if(isEmpty())
+            return false;
+        Node prev = tail;
+        Node current = tail.nextLink;
+        Node head = tail.nextLink;
+        if(current.data==data){
+            if(current==current.nextLink)
+                tail = null;
+            else
+                tail.nextLink = tail.nextLink.nextLink;
+            return true;
+        }
+        prev = current;
+        current = current.nextLink;
 
+        while(current!=head){
+            if(current.data==data){
+                if(current == tail)
+                    tail = prev;
+                prev.nextLink = current.nextLink;
+                return true;
+            }
+            prev = current;
+            current = current.nextLink;
+        }
+        return  false;
+    }
+    
 
     // TRAVERSE A LINKED LIST
 
     public void print() {
-        Node temp = tail;
+        if(isEmpty())
+            return;
+        Node temp = tail.nextLink;
         while (temp != null) {
             System.out.println(temp.data.getName() + ", " + temp.data.getStudentNumber() + ", ");
             temp = temp.nextLink;
