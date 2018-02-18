@@ -3,22 +3,29 @@ package com.kabaso.datastructures.linear.lists;
 import com.kabaso.datastructures.Student;
 
 public class DoublyCircularLinkedList {
+
+    // Our Box
     private static class Node {
         private Student data;
-        private SinglyLinkedList.Node nextLink;
+        private Node nextLink;
+        private Node prevLink;
 
-        public Node(Student data, SinglyLinkedList.Node next) {
+        public Node(Student data, Node next, Node prev) {
             this.data = data;
             this.nextLink = next;
+            this.nextLink = prev;
         }
 
         public Node(Student data) {
             this.data = data;
-            this.nextLink = null;
+            this.nextLink = this;
+            this.prevLink = this;
         }
     }
 
-    private SinglyLinkedList.Node head; // sometimes called top
+
+    private Node head = null;
+    private Node tail = null;
     private int size;
 
     public int size() {
@@ -29,74 +36,102 @@ public class DoublyCircularLinkedList {
         return size == 0;
     }
 
+    public Student peek() {
+        if (isEmpty())
+            throw new IllegalStateException("Emmpty List Exception");
+        return head.data;
+    }
+
+    public void deleteList() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+
     // Node Insertion in a Linked List
     // 1. Insert	element	at	the	start
 
     public void addAtHead(Student data) {
-        head = new SinglyLinkedList.Node(data, head);
+        Node newNode = new Node(data, null, null);
+
+        if (size() == 0) {
+            tail = head = newNode;
+            newNode.nextLink = newNode;
+            newNode.prevLink = newNode;
+        } else {
+            newNode.nextLink = head;
+            newNode.prevLink = head.prevLink;
+            head.prevLink = newNode;
+            newNode.prevLink.nextLink = newNode;
+            head = newNode;
+        }
         size++;
     }
 
     // 2. Insert	element	at	the	end
     public void addToTail(Student data) {
-        SinglyLinkedList.Node newNode = new SinglyLinkedList.Node(data);
-        SinglyLinkedList.Node curr = head;
-
-        if (head == null)
-            head = newNode;
-
-        while (curr.nextLink != null) {
-            curr = curr.nextLink;
-        }
-        curr.nextLink = newNode;
-
-    }
-    // 3. Insert	of	an	element	at	the	Nth position
-
-    SinglyLinkedList.Node InsertNth(Student data, int position) {
-        SinglyLinkedList.Node node = head;
-        if (position == 0) {
-            node = new SinglyLinkedList.Node(data, head);
-            return node;
+        Node newNode = new Node(data, null, null);
+        if (size() == 0) {
+            head = tail = newNode;
+            newNode.nextLink = newNode;
+            newNode.prevLink = newNode;
         } else {
-            while (--position > 0) {
-                node = node.nextLink;
-            }
-            SinglyLinkedList.Node next = node.nextLink;
-            node.nextLink = new SinglyLinkedList.Node(data, next);
-            return head;
+            newNode.nextLink = tail.nextLink;
+            newNode.prevLink = tail;
+            tail.nextLink = newNode;
+            newNode.nextLink.prevLink = newNode;
+            tail = newNode;
         }
+        size++;
     }
 
-
-    // 3. Insert	element	in	sorted	order
-
-    public void addSorted(Student data) {
-        SinglyLinkedList.Node newNode = new SinglyLinkedList.Node(data);
-        SinglyLinkedList.Node curr = head;
-
-        if (curr.nextLink == null || curr.data.getStudentNumber() > data.getStudentNumber()) {
-            newNode.nextLink = head;
-            return;
+   // Delete head
+    public Student deleteHead(){
+        if(size()==0)
+            throw new IllegalStateException(" List is Empty");
+        Student data = head.data;
+        size--;
+        if(size() == 0){
+            head = null;
+            tail = null;
+            return data;
         }
+        Node nextNode = head.nextLink;
+        nextNode.prevLink = tail;
+        tail.nextLink = nextNode;
+        head = nextNode;
+        return data;
+    }
 
-        while (curr.nextLink != null && curr.nextLink.data.getStudentNumber() < data.getStudentNumber()) {
-            curr = curr.nextLink;
+    // Delete tail
+    public Student deleteTail() {
+        if(size()==0)
+            throw new IllegalStateException(" List is Empty");
+        Student data = tail.data;
+        size--;
+        if(size() == 0){
+            head = null;
+            tail = null;
+            return data;
         }
-
-        newNode.nextLink = curr.nextLink;
-        curr.nextLink = newNode;
+        Node prevNode = tail.prevLink;
+        prevNode.nextLink = head;
+        head.prevLink = prevNode;
+        tail = prevNode;
+        return data;
     }
 
     // TRAVERSE A LINKED LIST
 
     public void print() {
-        SinglyLinkedList.Node temp = head;
-        while (temp != null) {
+        if (isEmpty()) {
+            return;
+        }
+        Node temp = head;
+        while (temp != tail) {
             System.out.println(temp.data.getName() + ", " + temp.data.getStudentNumber() + ", ");
             temp = temp.nextLink;
         }
     }
-
-
 }

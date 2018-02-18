@@ -114,7 +114,7 @@ public class CircularLinkedList {
         }
         return  false;
     }
-    
+
 
     // TRAVERSE A LINKED LIST
 
@@ -127,6 +127,4 @@ public class CircularLinkedList {
             temp = temp.nextLink;
         }
     }
-
-
 }
