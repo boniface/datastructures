@@ -124,14 +124,5 @@ public class DoublyCircularLinkedList {
 
     // TRAVERSE A LINKED LIST
 
-    public void print() {
-        if (isEmpty()) {
-            return;
-        }
-        Node temp = head;
-        while (temp != tail) {
-            System.out.println(temp.data.getName() + ", " + temp.data.getStudentNumber() + ", ");
-            temp = temp.nextLink;
-        }
-    }
+
 }
