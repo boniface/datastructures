@@ -31,7 +31,7 @@ public class Driver {
 
         for (int i = 0; i < books.length; i++) {
             Book book = books[i];
-            System.out.println(" The name of the Book is "+ book.getName()+" And the ID is "+book.getId());
+            System.out.println(" The name of the Book is " + book.getName() + " And the ID is " + book.getId());
         }
 
     }
