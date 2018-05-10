@@ -45,7 +45,7 @@ public class AdjacentList implements GraphADT{
     nodeValues[v]=data;
     }
 
-    // Return the link in v's neighbor list that preceeds the
+    // Return the link in v's neighbor list that proceeds the
     // one with w (or where it would be)
     private Edge find (int v, int w) {
         Edge curr = nodeArray[v];
